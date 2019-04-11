@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "git-fetch",
+      "label": "npm run git-fetch",
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "start",
+      "label": "npm run start",
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

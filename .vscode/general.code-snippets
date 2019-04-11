@@ -1,0 +1,24 @@
+{
+  "createAPICall": {
+    "prefix": "createAPICall",
+    "body": [
+      "export const $1Call = createAPICall({",
+      "  name: '$1',",
+      "  container,",
+      "  apiCallParams: payload => {",
+      "    return [[api, api.get], ``, payload]",
+      "  },",
+      "});"
+    ]
+  },
+  "message": {
+    "prefix": "msg",
+    "body": [
+      "$1: {",
+      "  id:",
+      "    'app.containers.$3${TM_DIRECTORY/^.+\\/(.*)$/$1/}.$1',",
+      "  defaultMessage: '$2',",
+      "},"
+    ]
+  }
+}

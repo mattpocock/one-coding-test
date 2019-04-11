@@ -1,0 +1,21 @@
+/**
+ * All API calls exported from this file will be added
+ * to the reducer, saga and props of index.js
+ */
+import createAPICall from 'utils/helperFunctions/createAPICall';
+import Api from 'utils/apiClient';
+import appConfig from 'appConfig';
+
+const api = new Api(appConfig.serverUrl);
+
+const container = '{{ camelCase name }}';
+
+export const getConfigCall = createAPICall({
+  name: 'getConfig',
+  container,
+  apiCallParams: (payload) => [
+    [api, api.get],
+    ``,
+    payload
+  ],
+});
