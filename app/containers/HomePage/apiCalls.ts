@@ -6,6 +6,7 @@ import createAPICall from 'utils/helperFunctions/createAPICall';
 import axios from 'axios';
 import createReducer from 'utils/helperFunctions/createReducer';
 import { TITLE_A_TO_Z } from './constants';
+import uuid from 'uuid/v4';
 
 const container = 'homePage';
 
@@ -27,16 +28,17 @@ export const basketState = createReducer({
   actions: {
     add: (state, payload) => ({
       ...state,
-      items: [...(state.items || []), payload],
+      /** Here, we are adding an _id property to guarantee uniqueness  */
+      items: [...(state.items || []), { ...payload, _id: uuid() }],
     }),
     removeById: (state, id) => ({
       ...state,
-      items: state.items.filter((item: { id: string }) => item.id !== id),
+      items: state.items.filter((item: { _id: string }) => item._id !== id),
     }),
     changeById: (state, { id, newItem }) => ({
       ...state,
-      items: state.items.map((item: { id: string }) => {
-        if (item.id === id) return newItem;
+      items: state.items.map((item: { _id: string }) => {
+        if (item._id === id) return newItem;
         return item;
       }),
     }),

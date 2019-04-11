@@ -23,9 +23,10 @@ const spacings = {
 };
 
 const fontSizes = {
+  1: '0.6rem',
   2: '1rem',
-  3: '1.5rem',
-  4: '2rem',
+  3: '1.4rem',
+  4: '1.8rem',
 };
 
 const fontFamily = 'Montserrat, Futura, sans-serif';

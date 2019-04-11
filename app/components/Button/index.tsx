@@ -12,13 +12,25 @@ const secondaryStyles = css`
   color: ${theme.greys[9]};
 `;
 
+const smallStyles = css`
+  font-size: ${theme.fontSizes[1]};
+  padding: ${theme.spacings[1]};
+`;
+
 const Button = styled.button`
   border: none;
+  cursor: pointer;
   padding: ${theme.spacings[2]} ${theme.spacings[4]};
   ${theme.uppercaseText};
   font-size: ${theme.fontSizes[2]};
-  ${(props: { secondary?: boolean }) =>
+  ${(props: ButtonProps) =>
     props.secondary ? secondaryStyles : primaryStyles};
+  ${(props: ButtonProps) => (props.small ? smallStyles : '')};
 `;
+
+interface ButtonProps {
+  secondary?: boolean;
+  small?: boolean;
+}
 
 export default Button;

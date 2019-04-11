@@ -3,6 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Cart from './index';
 import { Grid, Row, Col } from 'react-bootstrap';
+import products from 'fixtures/products.json';
 
 storiesOf('Cart', module)
   .add('One Item', () => (
@@ -11,14 +12,8 @@ storiesOf('Cart', module)
         <Row>
           <Col md={3}>
             <Cart
-              items={[
-                {
-                  id: '1',
-                  title: `Matt's t-shirt`,
-                  size: 'Medium',
-                  price: 19.99,
-                },
-              ]}
+              removeFromCart={() => null}
+              items={[products[0], products[1]]}
             />
           </Col>
         </Row>
@@ -30,34 +25,7 @@ storiesOf('Cart', module)
       <Grid>
         <Row>
           <Col md={3}>
-            <Cart
-              items={[
-                {
-                  id: '1',
-                  title: `Matt's t-shirt`,
-                  size: 'Medium',
-                  price: 19.99,
-                },
-                {
-                  id: '2',
-                  title: `Matt's t-shirt`,
-                  size: 'Medium',
-                  price: 19.99,
-                },
-                {
-                  id: '3',
-                  title: `Matt's t-shirt`,
-                  size: 'Medium',
-                  price: 19.99,
-                },
-                {
-                  id: '4',
-                  title: `Matt's t-shirt`,
-                  size: 'Medium',
-                  price: 19.99,
-                },
-              ]}
-            />
+            <Cart removeFromCart={() => null} items={products} />
           </Col>
         </Row>
       </Grid>

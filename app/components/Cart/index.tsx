@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import theme from 'theme';
 import RoundPill from 'components/RoundPill';
+import Product from '../../types/Product';
+import Button from 'components/Button';
 
-const Cart = ({ items = [] }: Props) => {
+const Cart = ({ items = [], removeFromCart }: Props) => {
   return (
     <CartWrapper>
       <HeaderWrapper style={{ display: 'flex', alignItems: 'center' }}>
@@ -12,12 +14,19 @@ const Cart = ({ items = [] }: Props) => {
       </HeaderWrapper>
       <CartItemsWrapper>
         {items.map(item => (
-          <CartItemWrapper key={item.id}>
+          <CartItemWrapper key={item._id}>
             <TitleSubtitleWrapper>
               <Title>{item.title}</Title>
-              <Size>{item.size}</Size>
+              <Size>{item.variants[0].title}</Size>
             </TitleSubtitleWrapper>
-            <Price>£{item.price}</Price>
+            <PriceButtonWrapper>
+              <Price>
+                £{Intl.NumberFormat().format(Number(item.variants[0].price))}
+              </Price>
+              <Button secondary small onClick={() => removeFromCart(item._id)}>
+                Remove
+              </Button>
+            </PriceButtonWrapper>
           </CartItemWrapper>
         ))}
       </CartItemsWrapper>
@@ -27,7 +36,9 @@ const Cart = ({ items = [] }: Props) => {
           <TotalsSubtitle>Inc. £0 in taxes</TotalsSubtitle>
         </TitleSubtitleWrapper>
         <Price style={{ fontSize: theme.fontSizes[4] }}>
-          £{items.reduce((a, b) => a + b.price, 0)}
+          £{Intl.NumberFormat().format(
+            items.reduce((a, b) => a + Number(b.variants[0].price), 0),
+          )}
         </Price>
       </TotalsArea>
     </CartWrapper>
@@ -52,6 +63,8 @@ const CartWrapper = styled.div`
 const CartItemsWrapper = styled.div`
   border-top: 1px solid ${theme.greys[1]};
   flex-grow: 1;
+  max-height: 50rem;
+  overflow-x: auto;
 `;
 
 const TitleSubtitleWrapper = styled.div`
@@ -64,6 +77,12 @@ const CartItemWrapper = styled.div`
   border-bottom: 1px solid ${theme.greys[1]};
   padding: ${theme.spacings[2]};
   display: flex;
+  justify-content: space-between;
+`;
+
+const PriceButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
 `;
 
@@ -109,12 +128,8 @@ const TotalsSubtitle = styled.span`
 `;
 
 interface Props {
-  items: {
-    id: string;
-    title: string;
-    size: string;
-    price: number;
-  }[];
+  items: Product[];
+  removeFromCart: (id: string) => void;
 }
 
 export default Cart;
