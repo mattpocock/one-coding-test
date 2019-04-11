@@ -39,6 +39,7 @@ const SmallMenu = styled.ul`
 `;
 
 const MenuItem = styled.li`
+  ${theme.textBasics};
   list-style-type: none;
   color: ${theme.primaryColorMain};
   font-size: ${theme.spacings[2]};
