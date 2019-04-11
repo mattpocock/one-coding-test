@@ -13,7 +13,7 @@ import ProductCard from 'components/ProductCard';
 import LoadingProductCard from 'components/ProductCard/Loading';
 // @ts-ignore
 import clothesImg from 'images/clothes.jpg';
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Grid, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import theme from 'theme';
@@ -22,26 +22,34 @@ import connectToState from 'utils/helperFunctions/connectToState';
 import useComponentDidMount from 'utils/hooks/useComponentDidMount';
 import NestedApiCallPropTypes from 'utils/types/NestedApiCallPropTypes';
 import * as apiCalls from './apiCalls';
-import {
-  PRICE_HIGH_TO_LOW,
-  PRICE_LOW_TO_HIGH,
-  TITLE_A_TO_Z,
-  TITLE_Z_TO_A,
-} from './constants';
 import Footer from 'components/Footer';
 import { FormattedMessage } from 'react-intl';
 // @ts-ignore
 import Sticky from 'react-stickynode';
 import messages from './messages';
+import useWatchForTruthy from 'utils/hooks/useWatchForTruthy';
+import Button from 'components/Button';
+import sortFunctions from './sortFunctions';
 
 const container = 'homePage';
 
 const HomePage = ({ getProducts, basket, order }: Props) => {
+  const [products, setProducts] = useState([]);
+
   useComponentDidMount(() => {
     getProducts.submit();
   });
 
-  const products: Product[] = (getProducts.state.data || {}).products || [];
+  useWatchForTruthy(getProducts.state.hasSucceeded, () => {
+    setProducts([
+      ...products,
+      ...((getProducts.state.data || {}).products || []),
+    ]);
+  });
+
+  const handleLoadMore = () => {
+    getProducts.submit();
+  };
 
   return (
     <>
@@ -88,6 +96,17 @@ const HomePage = ({ getProducts, basket, order }: Props) => {
           </Col>
         </Row>
       </Grid>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: theme.spacings[4],
+        }}
+      >
+        <Button secondary onClick={handleLoadMore}>
+          <FormattedMessage {...messages.loadMore} />
+        </Button>
+      </div>
       <Footer />
     </>
   );
@@ -122,18 +141,3 @@ export default connectToState({
   container,
   apiCalls,
 })(HomePage);
-
-const sortFunctions: {
-  [index: string]: (a: Product, b: Product) => number;
-} = {
-  [TITLE_A_TO_Z]: (a, b) => (a.title > b.title ? 1 : -1),
-  [TITLE_Z_TO_A]: (a, b) => (a.title > b.title ? -1 : 1),
-  [PRICE_HIGH_TO_LOW]: (a, b) => {
-    if (Number(a.variants[0].price) === Number(b.variants[0].price)) return 0;
-    return Number(a.variants[0].price) > Number(b.variants[0].price) ? -1 : 1;
-  },
-  [PRICE_LOW_TO_HIGH]: (a, b) => {
-    if (Number(a.variants[0].price) === Number(b.variants[0].price)) return 0;
-    return Number(a.variants[0].price) > Number(b.variants[0].price) ? 1 : -1;
-  },
-};

@@ -15,4 +15,8 @@ export default defineMessages({
     id: 'app.containers.HomePage.error',
     defaultMessage: 'Could not load products',
   },
+  loadMore: {
+    id: 'app.containers.HomePage.loadMore',
+    defaultMessage: 'Load More',
+  },
 });
