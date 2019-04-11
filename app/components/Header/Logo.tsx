@@ -28,8 +28,8 @@ const LogoWrapper = styled.div`
 
 const Small = styled.span`
   ${theme.uppercaseText};
-  font-size: 0.9rem;
-  margin-left: 1px;
+  font-size: 0.75rem;
+  margin-left: 2px;
   transform: translate(0px, 0px);
   vertical-align: top;
   display: inline-block;
