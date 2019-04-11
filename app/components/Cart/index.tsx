@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from 'theme';
-import { css } from 'styled-components';
 import RoundPill from 'components/RoundPill';
 
 const Cart = ({ cartCount }: Props) => {

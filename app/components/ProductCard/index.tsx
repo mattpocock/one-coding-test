@@ -47,6 +47,7 @@ const Price = styled.h4`
 const ProductCardWrapper = styled.div`
   background-color: ${theme.greys[0]};
   padding: ${theme.spacings[2]} ${theme.spacings[2]};
+  box-shadow: ${theme.shadows[1]};
 `;
 
 const ImageWrapper = styled.div`

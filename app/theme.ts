@@ -37,6 +37,10 @@ const uppercaseText = css`
   font-family: ${fontFamily};
 `;
 
+const shadows = {
+  1: '0px 2px 10px 0px rgba(0,0,0,0.12), 0px 5px 20px 0px rgba(0,0,0,0.08)',
+};
+
 const theme = {
   primaryColors,
   primaryColorMain: primaryColors[5],
@@ -45,6 +49,7 @@ const theme = {
   spacings,
   fontFamily,
   fontSizes,
+  shadows,
   uppercaseText,
 };
 
