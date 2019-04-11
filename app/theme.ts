@@ -23,6 +23,7 @@ const spacings = {
 const fontSizes = {
   2: '1rem',
   3: '1.5rem',
+  4: '2rem',
 };
 
 const theme = {

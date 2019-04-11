@@ -34,6 +34,7 @@ const Title = styled.h3`
   text-transform: uppercase;
   font-weight: bold;
   margin-right: ${theme.spacings[3]};
+  line-height: ${theme.fontSizes[4]};
 `;
 
 const Price = styled.h4`
