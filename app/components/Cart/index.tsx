@@ -6,7 +6,7 @@ import RoundPill from 'components/RoundPill';
 const Cart = ({ cartCount }: Props) => {
   return (
     <CartWrapper>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <Header>Cart</Header>
         <RoundPill>{cartCount}</RoundPill>
       </div>
@@ -17,6 +17,7 @@ const Cart = ({ cartCount }: Props) => {
 const CartWrapper = styled.div`
   background-color: ${theme.greys[0]};
   padding: ${theme.spacings[3]};
+  box-shadow: ${theme.shadows[1]};
 `;
 
 const Header = styled.h3`
