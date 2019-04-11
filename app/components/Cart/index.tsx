@@ -88,6 +88,7 @@ const PriceButtonWrapper = styled.div`
 
 const Price = styled.span`
   ${theme.boldText};
+  margin-bottom: ${theme.spacings[0]};
 `;
 
 const Title = styled.span`
