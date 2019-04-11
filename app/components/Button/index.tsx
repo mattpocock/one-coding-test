@@ -15,10 +15,7 @@ const secondaryStyles = css`
 const Button = styled.button`
   border: none;
   padding: ${theme.spacings[2]} ${theme.spacings[4]};
-  font-family: ${theme.fontFamily};
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1.2px;
+  ${theme.uppercaseText};
   font-size: ${theme.fontSizes[2]};
   ${(props: { secondary?: boolean }) =>
     props.secondary ? secondaryStyles : primaryStyles};

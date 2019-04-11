@@ -1,3 +1,5 @@
+import { css } from 'styled-components';
+
 const primaryColors = {
   5: '#DC6563',
 };
@@ -26,14 +28,24 @@ const fontSizes = {
   4: '2rem',
 };
 
+const fontFamily = 'Montserrat, Futura, sans-serif';
+
+const uppercaseText = css`
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  font-family: ${fontFamily};
+`;
+
 const theme = {
   primaryColors,
   primaryColorMain: primaryColors[5],
   white: greys[0],
   greys,
   spacings,
-  fontFamily: 'Montserrat, Futura, sans-serif',
+  fontFamily,
   fontSizes,
+  uppercaseText,
 };
 
 export default theme;
