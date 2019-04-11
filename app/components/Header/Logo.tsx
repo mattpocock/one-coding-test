@@ -1,20 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from 'theme';
+import { css } from 'styled-components';
 
-const Logo = () => {
+const Logo = ({ secondary = false }) => {
   return (
-    <LogoWrapper>
+    <LogoWrapper secondary={secondary}>
       <LogoText>Eclectees</LogoText>
       <Small>co</Small>
     </LogoWrapper>
   );
 };
 
+const invertedStyles = css`
+  background-color: ${theme.primaryColorMain};
+  span {
+    color: white;
+  }
+`;
+
 const LogoWrapper = styled.div`
   display: inline-block;
   border: 2px solid ${theme.primaryColorMain};
   padding: ${theme.spacings[0]} ${theme.spacings[1]};
+  ${(props: { secondary: boolean }) => (props.secondary ? invertedStyles : '')};
 `;
 
 const Small = styled.span`

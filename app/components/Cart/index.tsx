@@ -54,10 +54,12 @@ const HeaderWrapper = styled.div`
 const CartWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  border-top: solid 3px ${theme.primaryColorMain};
   min-height: 30rem;
   background-color: ${theme.greys[0]};
   padding: ${theme.spacings[3]};
   box-shadow: ${theme.shadows[1]};
+  margin-bottom: ${theme.spacings[4]};
 `;
 
 const CartItemsWrapper = styled.div`

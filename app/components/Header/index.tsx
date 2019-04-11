@@ -1,11 +1,10 @@
 import React from 'react';
+import { Grid } from 'react-bootstrap';
 import styled from 'styled-components';
 import theme from 'theme';
-import { css } from 'styled-components';
-import Logo from './Logo';
-import { Grid } from 'react-bootstrap';
-import RoundPill from '../RoundPill';
 import Product from '../../types/Product';
+import RoundPill from '../RoundPill';
+import Logo from './Logo';
 
 const Header = ({ items }: { items: Product[] }) => {
   return (
