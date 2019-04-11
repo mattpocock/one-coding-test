@@ -8,11 +8,11 @@ const greys = {
   0: 'white',
   1: '#F5F3F6',
   2: '#E6E4E7',
-  8: '#444',
-  9: '#222222',
+  8: '#555',
+  9: '#333',
 };
 const spacings = {
-  0: '0rem',
+  0: '0.25rem',
   1: '0.5rem',
   2: '1rem',
   3: '1.5rem',
@@ -30,11 +30,21 @@ const fontSizes = {
 
 const fontFamily = 'Montserrat, Futura, sans-serif';
 
+const textBasics = css`
+  font-family: ${fontFamily};
+  color: ${greys[9]};
+`;
+
+const boldText = css`
+  ${textBasics};
+  font-weight: bold;
+`;
+
 const uppercaseText = css`
+  ${textBasics};
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 1.2px;
-  font-family: ${fontFamily};
 `;
 
 const shadows = {
@@ -51,6 +61,8 @@ const theme = {
   fontSizes,
   shadows,
   uppercaseText,
+  boldText,
+  textBasics,
 };
 
 export default theme;
