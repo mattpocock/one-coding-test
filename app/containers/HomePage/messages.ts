@@ -11,4 +11,8 @@ export default defineMessages({
     id: 'app.containers.HomePage.header',
     defaultMessage: 'Eclectees',
   },
+  error: {
+    id: 'app.containers.HomePage.error',
+    defaultMessage: 'Could not load products',
+  },
 });

@@ -71,6 +71,11 @@ const HomePage = ({ getProducts, basket, order }: Props) => {
                   />
                 </Col>
               ))}
+              {getProducts.state.hasError && (
+                <p>
+                  <FormattedMessage {...messages.error} />
+                </p>
+              )}
             </Row>
           </Col>
           <Col lg={3} md={4}>

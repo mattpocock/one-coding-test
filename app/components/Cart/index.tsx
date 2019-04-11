@@ -55,7 +55,7 @@ const CartWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-top: solid 3px ${theme.primaryColorMain};
-  min-height: 30rem;
+  min-height: 40vh;
   background-color: ${theme.greys[0]};
   padding: ${theme.spacings[3]};
   box-shadow: ${theme.shadows[1]};
@@ -65,7 +65,7 @@ const CartWrapper = styled.div`
 const CartItemsWrapper = styled.div`
   border-top: 1px solid ${theme.greys[1]};
   flex-grow: 1;
-  max-height: 50rem;
+  max-height: 60vh;
   overflow-x: auto;
 `;
 
