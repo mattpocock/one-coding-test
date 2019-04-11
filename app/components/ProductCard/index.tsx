@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import theme from 'theme';
 import Button from 'components/Button';
+import AsyncLoadImage from 'components/AsyncLoadImage';
 
 const ProductCard = ({ imageSrc, title, price, addToCart }: Props) => {
   return (
@@ -65,7 +66,7 @@ export const ImageWrapper = styled.div`
   align-items: center;
 `;
 
-export const Image = styled.img`
+export const Image = styled(AsyncLoadImage)`
   width: 100%;
 `;
 
