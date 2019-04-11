@@ -22,10 +22,17 @@ import ProductCard from 'components/ProductCard';
 import theme from 'theme';
 import Product from 'types/Product';
 import LoadingProductCard from 'components/ProductCard/Loading';
+import OrderSelect from 'components/OrderSelect';
+import {
+  TITLE_A_TO_Z,
+  TITLE_Z_TO_A,
+  PRICE_HIGH_TO_LOW,
+  PRICE_LOW_TO_HIGH,
+} from './constants';
 
 const container = 'homePage';
 
-const HomePage = ({ getProducts, basket }: Props) => {
+const HomePage = ({ getProducts, basket, order }: Props) => {
   useComponentDidMount(() => {
     getProducts.submit();
   });
@@ -39,6 +46,7 @@ const HomePage = ({ getProducts, basket }: Props) => {
       <Grid>
         <Row>
           <Col lg={9}>
+            <OrderSelect order={order.state.type} onChange={order.change} />
             <Row>
               {getProducts.state.isLoading &&
                 new Array(9).fill(null).map((_, index) => (
@@ -46,7 +54,7 @@ const HomePage = ({ getProducts, basket }: Props) => {
                     <LoadingProductCard />
                   </Col>
                 ))}
-              {products.map(product => (
+              {products.sort(sortFunctions[order.state.type]).map(product => (
                 <Col lg={4} key={product._id}>
                   <ProductCard
                     title={product.title}
@@ -99,3 +107,14 @@ export default connectToState({
   container,
   apiCalls,
 })(HomePage);
+
+const sortFunctions: {
+  [index: string]: (a: Product, b: Product) => number;
+} = {
+  [TITLE_A_TO_Z]: (a, b) => (a.title > b.title ? 1 : -1),
+  [TITLE_Z_TO_A]: (a, b) => (a.title > b.title ? -1 : 1),
+  [PRICE_HIGH_TO_LOW]: (a, b) =>
+    Number(a.variants[0].price) > Number(b.variants[0].price) ? -1 : 1,
+  [PRICE_LOW_TO_HIGH]: (a, b) =>
+    Number(a.variants[0].price) > Number(b.variants[0].price) ? 1 : -1,
+};

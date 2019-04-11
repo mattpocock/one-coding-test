@@ -1,6 +1,7 @@
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../app/global.css';
 
 addDecorator(storyFn => (
   <div
